@@ -1,0 +1,4 @@
+venv/
+requests.log
+.idea
+__pycache__/
