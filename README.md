@@ -33,7 +33,7 @@ $ source ~./zshrc
 # for bash users
 $ chmod u+x setup.sh
 $ ./setup.sh
-$ source ~./zshrc
+$ source ~./bashrc
 ```
 
 3. Update config (Optional)
