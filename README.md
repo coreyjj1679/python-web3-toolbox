@@ -122,3 +122,14 @@ everything inside terminal. Getting rugged or scammed without a browser.
 - get voting data from `GovernorBravo` or any similar contracts.
 
 ### Coingecko/CMC (TBD)
+
+-
+
+### TheGraph (TBD)
+
+-
+
+### Contributing
+
+- Check [Dashboard](https://github.com/users/ruggedev/projects/2)
+- PR
