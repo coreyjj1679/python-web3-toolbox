@@ -40,11 +40,11 @@ def rm(name: str):
     with open(bookmark_path) as bookmark_json:
         bookmarks = json.load(bookmark_json)
 
-    if not any(name in d['name'].lower() for d in bookmarks):
+    if not any(name.lower() in d['name'].lower() for d in bookmarks):
         print(f'{name} not found.')
         return
 
-    updated_json = [d for d in bookmarks if d['name'] != name]
+    updated_json = [d for d in bookmarks if d['name'].lower() != name.lower()]
     with open(bookmark_path, mode='w') as f:
         f.write(json.dumps(updated_json, indent=2))
     print(f'{name} removed from bookmark.')

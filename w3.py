@@ -5,12 +5,12 @@ from typing import List
 from rich import print
 from rich.console import Console
 from rich.table import Table
-from user_config import UserConfig
+from user_config import config
 from web3 import Web3
 import utils.explorer as eh
+import utils.contract as ch
 import json
 
-config = UserConfig()
 app = typer.Typer()
 console = Console()
 
@@ -79,5 +79,15 @@ def abi(address: Annotated[str, typer.Option("--address", "-a",
         return
 
     with open(file_dest, mode='w') as f:
-        f.write(json.dumps(json.loads(abi), indent=2))
+        f.write(json.dumps(json.loads(_abi), indent=2))
     print(f'abi of {file_name} saved to {file_dest}')
+
+
+@app.command(help='get creation block of a contract')
+def creation(address: str):
+    is_contract = ch.check_contract_created(config.web3_instance.provider, address)
+
+    if not is_contract:
+        print(f"{address} is not a contract address")
+        return
+    print(f'{ch.get_contract_creation_block(config.web3_instance.provider, address)}')

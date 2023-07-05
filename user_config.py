@@ -3,8 +3,6 @@ import json
 from typing import TypedDict, List
 from web3_instance import Web3Instance, Web3
 import os
-import sys
-from pathlib import Path
 
 
 class WalletConfig:
@@ -54,5 +52,9 @@ class UserConfig:
         self.wallet_list = [WalletConfig(i['address'], i['name']) for i
                             in json.loads(open(wallet_path, "r").read())]
         self.bookmark_list = json.loads(open(bookmark_path, "r").read())
-        self.cur_network = next(item for item in self.network_list if item["chain_slug"] == self.chain)
+        self.cur_network = next((item for item in self.network_list if item["chain_slug"] == self.chain), None)
         self.web3_instance = Web3Instance(self.cur_network['rpc'])
+
+
+config = UserConfig()
+
