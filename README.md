@@ -1,16 +1,17 @@
 # python all-in-one web3 toolbox
 
 All-in-one python toolbox for web3 and cli lovers. Aim to build a toolbox to do
-everything in a cli. Getting rugged or scammed without a browser.
+everything inside terminal. Getting rugged or scammed without a browser.
 
 ## Roadmap
 
-| scope                | command                                            | progress |
-| -------------------- | -------------------------------------------------- | -------- |
-| basic                | block, balance, token balance                      | WIP      |
-| on-chain data        | TheGraph, Covalent, Snapshot, DefiLlama            | TBD      |
-| on-chain transaction | contract call, contract interaction, encode/decode | TBD      |
-| misc                 | custom command, switching between wallet, ...      | TBD      |
+| scope                | command                                                              | progress |
+| -------------------- | -------------------------------------------------------------------- | -------- |
+| basic                | block, balance, token balance, convert case/date                     | WIP      |
+| on-chain data        | TheGraph, Covalent, Snapshot, DefiLlama                              | TBD      |
+| on-chain transaction | contract call, contract interaction, encode/decode                   | TBD      |
+| misc                 | custom command, switching between wallet, ...                        | TBD      |
+| further              | scheduled contract call, integrating flashbot, on-chain stalker, ... | TBD      |
 
 ## Setup
 
