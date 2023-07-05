@@ -1,9 +1,10 @@
 import typer
-from user_config import config
-from erc_instance import ERC20
 import path
 import os
 import json
+from user_config import config
+from erc_instance import ERC20
+from typing_extensions import Annotated
 
 app = typer.Typer()
 
@@ -51,8 +52,13 @@ def rm(name: str):
     print(f'{name} removed from bookmark.')
 
 
-@app.command(help='open your favourite dapp on browser')
-def balance(token: str, user: str, convert=None, block=None) -> None:
+@app.command(help='check ERC20 token balance')
+def balance(token: Annotated[str, typer.Option("--token", "-t",
+                                               help='token address/name')],
+            address: Annotated[str, typer.Option("--address", "-a",
+                                                 help='user address')] = None,
+            block: Annotated[int, typer.Option("--block", "-d",
+                                               help='hist. balance at specific block height')] = None) -> None:
     token_dir = path.TOKENS_DIR
     token_path = os.path.join(token_dir, f'{config.cur_network["chain_slug"]}.json')
     if not os.path.exists(token_path):
@@ -68,5 +74,5 @@ def balance(token: str, user: str, convert=None, block=None) -> None:
         token = ERC20(bookmarked['address'])
     else:
         token = ERC20(token)
-    user_balance = token.balance_of(user, convert, block)
-    print(f'{user}: {user_balance} {token.symbol}')
+    user_balance = token.balance_of(address, True, block)
+    print(f'{address}: {user_balance} {token.symbol}')

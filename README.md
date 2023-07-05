@@ -3,153 +3,122 @@
 All-in-one python toolbox for web3 and cli lovers. Aim to build a toolbox to do
 everything inside terminal. Getting rugged or scammed without a browser.
 
-## Roadmap
+## Environment
 
-| scope                | command                                                              | progress |
-| -------------------- | -------------------------------------------------------------------- | -------- |
-| basic                | block, balance, token balance, convert case/date                     | WIP      |
-| on-chain data        | TheGraph, Covalent, Snapshot, DefiLlama                              | TBD      |
-| on-chain transaction | contract call, contract interaction, encode/decode                   | TBD      |
-| misc                 | custom command, switching between wallet, ...                        | TBD      |
-| further              | scheduled contract call, integrating flashbot, on-chain stalker, ... | TBD      |
+- python 3.11
+- macOS Monterey 12.5.1
 
 ## Setup
 
-1. Clone the repo and install packages.
+- Clone the repo and install packages.
 
-```bash
-$ git clone <THIS_REPO>
-$ pip install -r requirement.txt
-```
+  ```bash
+  $ git clone <THIS_REPO>
+  $ pip install -r requirement.txt
+  ```
 
-2. Setup `alias`(Optional)
+- Setup `alias`(Optional)
 
-```bash
-# for zsh users
-$ chmod u+x setup.zsh
-$ ./setup.zsh
-$ source ~./zshrc
+  ```bash
+  # for zsh users
+  $ chmod u+x setup.zsh
+  $ ./setup.zsh
+  $ source ~./zshrc
 
-# for bash users
-$ chmod u+x setup.sh
-$ ./setup.sh
-$ source ~./bashrc
-```
+  # for bash users
+  $ chmod u+x setup.sh
+  $ ./setup.sh
+  $ source ~./bashrc
+  ```
 
-3. Update config (Optional)
-
-| file                                     | description                               | default         |
-| ---------------------------------------- | ----------------------------------------- | --------------- |
-| [config.ini](configs/config.ini)         | default chain for any command             | avax            |
-| [networks.json](configs/networks.json)   | chains info for any command               | avax, bnb       |
-| [wallet.json](configs/wallet.json)       | list of wallets (no private key required) | dummy addresses |
-| [bookmarks.json](configs/bookmarks.json) | list of bookmark                          | dummy bookmarks |
-
-4. Hello World
-
-```bash
-# set alias
-$ web3tools --help
-or
-# no
-$ python3 main.py --help
-```
+- Run
+  ```bash
+  # set alias
+  $ web3tools --help
+  or
+  # no
+  $ python3 main.py --help
+  ```
 
 ## Commands
 
+### General
+
+- get list of command groups
+
+  ```bash
+  $ web3tools --help
+  or
+  $ python3 main.py --help
+  ```
+
+- get list of sub-commands
+  ```bash
+  $ web3tools <GROUP> --help
+  or
+  $ python3 main.py <GROUP> --help
+  ```
+
 ### Basic
 
-1. convert case
+| command                                    | description                                         | remark                             |
+| :----------------------------------------- | :-------------------------------------------------- | :--------------------------------- |
+| `web3tools basic lc <STRING>`              | convert input str to lower case                     |                                    |
+| `web3tools basic uc <STRING>`              | convert input str to UPPER case                     |                                    |
+| `web3tools basic cs <STRING>`              | convert input str to checksum address               |                                    |
+| `web3tools basic date-to-ts <DATE_STRING>` | convert date string to timestamp in local timezones | input format: YYYY-MM-DD HH:MM:SS  |
+| `web3tools basic ts-to-date <TIMESTAMP>`   | convert timestamp to date string in local timezone  | output format: YYYY-MM-DD HH:MM:SS |
 
-command: `web3tools uc/lc/cs <STRING>`
+### w3
 
-- uc: convert to UPPERCASE
-- lc: convert to LOWERCASE
-- cs: convert to `check_sum` address
+| command                                                              | description                                              | remark                                                                   |
+| :------------------------------------------------------------------- | :------------------------------------------------------- | :----------------------------------------------------------------------- |
+| `web3tools w3 block [-c chain]`                                      | Get current block height of the default / specifc chain. |                                                                          |
+| `web3tools w3 creation <ADDRESS>`                                    | Get creation block of a contract                         | may takes 10s for the binary search                                      |
+| `web3tools w3 balance [-b block] [-a address]`                       | get native balance.                                      | default: wallets inside wallet.json, latest block                        |
+| `web3tools w3 abi [-a address] [-c chain] [-o output] [-f filename]` | get contract abi from any blockchain explorer            | update [`configs/networks.json`](configs/networks.json) for other chains |
 
-2. `block`
+### token
 
-command: `web3tools block -c <CHAIN_SLUG>`
-output:
+| command                                              | description                   | remark                                                                                                                          |
+| :--------------------------------------------------- | :---------------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| `web3tools token add <ADDRESS> <NAME>`               | bookmark your favourite token |                                                                                                                                 |
+| `web3tools token rm <NAME>`                          | remove token from bookmark    |                                                                                                                                 |
+| `web3tools token [-t token] [-a address] [-b block]` | get erc20 balance             | just input the name for bookmarked token, e.g. ` web3tools token balance -t usdt -a 0xf888d1a8c69dff6cbf043ec40a0f4b78181ec0bb` |
 
-```bash
-$ web3tools block
-> latest block: 32192657, chain_id: avax, timestamp: 1688527043
+### bookmark
 
-$ web3tools block -c bnb
-> latest block: 29686211, chain_id: bnb, timestamp: 1688527050
-```
+| command                                   | description                         | remark |
+| :---------------------------------------- | :---------------------------------- | :----- |
+| `web3tools bookmark add <ADDRESS> <NAME>` | bookmark your favourite protocol    |        |
+| `web3tools bookmark rm <NAME>`            | remove protocol from bookmark       |        |
+| `web3tools bookmark goto <NAME>`          | open your favourite dapp on browser |        |
 
-3. convert datestr/timestamp
+## WIPs
 
-command:
+### Covalent
 
-- timestamp to datestr: `web3tools ts-to-date <TIMESTAMP>`
-- datestr to timestamp: `web3tools date-to-ts <TIMESTAMP>`
+| command                                                                  | description                                                   | remark |
+| :----------------------------------------------------------------------- | :------------------------------------------------------------ | :----- |
+| `web3tools covalent log [-c chain] [-a address] [-t topic] [-o output]`  | fetch all event logs of a smart contract                      |        |
+| `web3tools covalent ul [-c chain] [-a address] [-t topic] [-o output]` ` | fetch list of unique address interacted with a smart contract |        |
+| `web3tools covalent token_holder [-c chain] [-a address] [-b block]`     | get number of token holder of any ERC20                       |        |
 
-output:
+### DefiLlama
 
-```bash
-$ web3tools ts-to-date 1688527347
-> 2023-07-05 11:22:27
+| command                                                    | description                                  | remark                                                     |
+| :--------------------------------------------------------- | :------------------------------------------- | :--------------------------------------------------------- |
+| `web3tools llama add <NAME> <LLAMA_SLUG>`                  | bookmark protocol                            |                                                            |
+| `web3tools llama rm <LLAMA_SLUG>`                          | remove bookmark                              |                                                            |
+| `web3tools llama ts [-m metics] [-i interval] [-o output]` | export time series of bookmarked protocols   | e.g. `web3tools llama ts -m TVL -i 7d -o tvl_7d.json`      |
+| `web3tools llama top [-m metrics] [-n number]`             | display top `n` protocols depends on metrics | e.g. `web3tools llama -m volumne -n 20 top_20_volumn.json` |
 
-$ web3tools date-to-ts "2023-07-05 11:22:27"
-> 1688527347
-```
+### Snapshot (TBD)
 
-4. token balance
+- get DAO, proposals or voting data
 
-command: `web3tools balance [-b block-height] [-a addresses]`
+### Governance(TBD)
 
-output:
+- get voting data from `GovernorBravo` or any similar contracts.
 
-```bash
-$ web3tools balance
-┏━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃ index ┃ name                ┃ address                                    ┃ AVAX balance              ┃
-┡━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
-│ 0     │ Mia Khalifa         │ 0x9f8c163cBA728e99993ABe7495F06c0A3c8Ac8b9 │ 843204.483109813509968818 │
-│ 1     │ Henri Léon Lebesgue │ 0xD6216fC19DB775Df9774a6E33526131dA7D19a2c │ 243132.708886098828550571 │
-└───────┴─────────────────────┴────────────────────────────────────────────┴───────────────────────────┘
-
-$ web3tools balance -b  25000000
-┏━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃ index ┃ name                ┃ address                                    ┃ AVAX balance              ┃
-┡━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
-│ 0     │ Mia Khalifa         │ 0x9f8c163cBA728e99993ABe7495F06c0A3c8Ac8b9 │ 258716.981498374809692885 │
-│ 1     │ Henri Léon Lebesgue │ 0xD6216fC19DB775Df9774a6E33526131dA7D19a2c │ 330132.721365885828550571 │
-└───────┴─────────────────────┴────────────────────────────────────────────┴───────────────────────────┘
-
-
-$ BINANCE=0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7
-$ RANDOM_GUY=0xFa76DF8588C1033B671d1861E0E5bDe3c26040c7
-$ web3tools balance -b 2500000 -a $BINANCE -a $RANDOM_GUY
-┏━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃ index ┃ address                                    ┃ AVAX balance               ┃
-┡━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
-│ 0     │ 0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7 │ 6604845.740067908565481545 │
-│ 1     │ 0xFa76DF8588C1033B671d1861E0E5bDe3c26040c7 │ 0.41052                    │
-└───────┴────────────────────────────────────────────┴────────────────────────────┘
-```
-
-4. bookmark
-
-```bash
-$ web3tools bookmark 1inch https://1inch.io/
-> added 1inch to bookmarks.json
-
-$ web3tools goto 1inch
-(Open the url on browser)
-
-$ web3tools remove-bookmark 1inch
-> 1inch removed from bookmark.
-```
-
-5. fetch contract abi
-
-command: `web3tools get-abi [-a address] [-c chain] [-n file_name] [-o out_dir]`
-
-```
-$ web3tools get-abi -a 0xb4315e873dBcf96Ffd0acd8EA43f689D8c20fB30 -c avax -n JoeLBRouter
-> abi of JoeLBRouter saved to abis/avax/JoeLBRouter.json
-```
+### Coingecko/CMC (TBD)

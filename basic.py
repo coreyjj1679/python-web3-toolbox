@@ -17,7 +17,7 @@ def uc(x: str):
     print(x.upper())
 
 
-@app.command(help="Simply convert to checksum address")
+@app.command(help="convert input str to checksum address")
 def cs(x: str):
     try:
         print(Web3.to_checksum_address(x))

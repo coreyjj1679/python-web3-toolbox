@@ -26,13 +26,13 @@ class ERC20:
              "decimals": self.decimals}
         )
 
-    def to_eth(self, v):
+    def to_wei(self, v):
         return v * (10 ** self.decimals)
 
-    def from_eth(self, v):
+    def from_wei(self, v):
         return v / (10 ** self.decimals)
 
-    def balance_of(self, user, convert=None, block=None):
+    def balance_of(self, user, convert=True, block=None):
         raw_b = self.contract.functions.balanceOf(Web3.to_checksum_address(user)).call(
             block_identifier=int(block) if block else 'latest')
-        return self.to_eth(raw_b) if convert else raw_b
+        return self.from_wei(raw_b) if convert else raw_b
