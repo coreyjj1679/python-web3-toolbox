@@ -21,3 +21,9 @@ def datestr_to_timestamp(_datestr: str) -> int:
     """
     return int(format((time.mktime(datetime.strptime(_datestr,
                                                      '%Y-%m-%d %H:%M:%S').timetuple())), '.10g'))
+
+def get_current_timestamp() -> int:
+    """
+    :return: UNIX timestamp
+    """
+    return int(format((time.mktime(datetime.now().timetuple())), '.10g'))

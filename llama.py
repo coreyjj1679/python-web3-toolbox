@@ -1,10 +1,15 @@
 import os.path
+from typing import Annotated
 import typer
 import utils.defillama as dl
+import utils.manage_json as mj
+import date_helper as dh
 import json
 
 app = typer.Typer()
 
+DATA_PATH = 'data/DefiLlama'
+PATH = os.path.join(os.path.dirname(__file__), DATA_PATH)
 
 @app.command(help='bookmark protocol')
 def add(name: str, llama_slug: str):
@@ -48,4 +53,21 @@ def rm(llama_slug: str):
     with open(bookmark_llama_protocol_path, mode='w') as f:
         f.write(json.dumps(updated_json, indent=2))
     print(f"{llama_slug} removed from bookmark_llama_protocol.json")
+    return
+
+
+@app.command(help='export time series of bookmarked protocols')
+def ts(metics: Annotated[str, typer.Option("--metics", "-m", help='eg: TVL')] = 'TVL',
+        interval: Annotated[str, typer.Option("--interval", "-i", help='eg: 7d')] = '7d',
+        output: Annotated[str, typer.Option("--output", "-o", help='eg: <file name>.csv')] = None,
+        ):
+
+    if output is None:
+        timestamp = dh.get_current_timestamp()
+        output = f"{metics}_{interval}_{timestamp}.json"
+
+    output = mj.get_unique_filename(output, PATH)  # '.' represents the current directory
+
+    print(output)
+
     return
