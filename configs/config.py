@@ -1,4 +1,4 @@
-from typing import List, Dict, Any, TypedDict, Optional
+from typing import TypedDict
 from rich.console import Console
 from rich.table import Table
 from enum import Enum
@@ -36,6 +36,9 @@ class JsonConfig(BaseConfig):
     def load_json(self):
         with open(self.file_path) as config_json:
             return json.load(config_json) or []
+
+    def keys(self):
+        return list(self.config_type.__annotations__.keys())
 
     def add(self, entry):
         records = self.load_json()
