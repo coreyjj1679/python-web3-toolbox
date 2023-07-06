@@ -9,7 +9,10 @@ SHORT_CUT='web3tools';
 setopt ALIASES;
 
 # Custom zsh script for our tools
-DIR=~/.oh-my-zsh/custom/web3-aio.zsh
+
+# replace this for oh-my-zsh user 
+# DIR=~/.oh-my-zsh/custom/web3-aio.zsh
+DIR=~/.zshrc
 if [ -d "$DIR" ];
 then
     echo "$DIR directory exists."
@@ -22,5 +25,5 @@ fi
 
 echo "alias $SHORT_CUT='python3 $CURRENT_PATH/main.py'" > $DIR;
 
+echo "Now you may simply call $SHORT_CUT instead of 'python3 $CURRENT_PATH/main.py' after restarting terminal";
 
-echo "Now you may simply call $SHORT_CUT instead of 'python3 $CURRENT_PATH/main.py'";
