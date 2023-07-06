@@ -1,20 +1,10 @@
 import os.path
 import typer
-from typing_extensions import Annotated
-from typing import List
-from rich import print
-from rich.console import Console
-from rich.table import Table
-from user_config import config
-from web3 import Web3
-import utils.explorer as eh
-import utils.contract as ch
+import utils.defillama as dl
 import json
 
-import utils.defillama as dl
-
 app = typer.Typer()
-console = Console()
+
 
 @app.command(help='bookmark protocol')
 def add(name: str, llama_slug: str):
