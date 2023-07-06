@@ -1,10 +1,8 @@
 from typing import Annotated, Optional, List
-
-import typer
-import configs.config as config
 from rich.console import Console
 from rich import print
-from enum import Enum
+import configs.config as config
+import typer
 
 app = typer.Typer()
 console = Console()
@@ -17,13 +15,27 @@ def ls():
     [(f(u)) for u in config.CONFIG_GROUP]
 
 
-@app.command()
-def table(alias: str, index=False):
+@app.command(help="print keys of configs")
+def pk(alias: str):
     cfg_obj = config.get_config(alias)
 
     if not cfg_obj:
         print(f"Config {alias} not found.")
-    cfg_obj.table()
+
+    keys = cfg_obj.keys()
+
+    print(f"To add new entry for {alias}: ")
+    k = " ".join([f'<{j.upper()}>' for j in keys])
+    print(f"web3tools config {alias} add {k}")
+
+
+@app.command()
+def table(alias: str, index: Annotated[bool, typer.Option("--index")] = False):
+    cfg_obj = config.get_config(alias)
+
+    if not cfg_obj:
+        print(f"Config {alias} not found.")
+    cfg_obj.table(index)
 
 
 @app.command()
@@ -32,7 +44,7 @@ def add(alias: str, entry: Annotated[Optional[List[str]], typer.Argument()] = No
     if not cfg_obj:
         print(f"Config {alias} not found.")
 
-    keys = list(cfg_obj.config_type.__annotations__.keys())
+    keys = cfg_obj.keys()
     if len(entry) != len(keys):
         print("Got unexpected arguments")
         print(f"Keys: {keys}")
