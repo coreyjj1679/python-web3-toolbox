@@ -11,7 +11,11 @@ CONFIG_PATH = get_abs_path('configs/config.ini')
 NETWORK_PATH = get_abs_path('configs/networks.json')
 WALLET_PATH = get_abs_path('configs/wallet.json')
 BOOKMARK_PATH = get_abs_path('configs/bookmarks.json')
+LLAMA_PATH = get_abs_path('configs/bookmark_llama_protocol.json')
+
+# [Tokens directories groupped by chain_name]
 TOKENS_DIR = get_abs_path('configs/tokens/')
+
 
 # [abis]
 ERC20_ABI = get_abs_path('abis/common/ERC20.json')
