@@ -4,7 +4,6 @@ version = "0.1.0"
 description = ""
 authors = ["ruggedev <ruggedev@gmail.com>"]
 readme = "README.md"
-packages = [{include = "python_web3_toolbox"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
