@@ -34,7 +34,7 @@ def get_contract_instance(provider, contract_address, file_path):
     contract_abi = abi_loader(file_path)
     contract_instance = contract_loader(provider, contract_address, contract_abi)
 
-    return {'abi': contract_abi, 'instance': contract_instance}
+    return {"abi": contract_abi, "instance": contract_instance}
 
 
 def check_contract_created(provider, contract_address, block=None):
@@ -46,9 +46,9 @@ def check_contract_created(provider, contract_address, block=None):
     :return: true if contract created
     """
     if block:
-        return provider.eth.get_code(contract_address, block) != b''
+        return provider.eth.get_code(contract_address, block) != b""
     else:
-        return provider.eth.get_code(contract_address) != b''
+        return provider.eth.get_code(contract_address) != b""
 
 
 def get_code(provider, contract_address, block):
@@ -76,15 +76,21 @@ def binary_search_creation_block(provider, contract_address, start, end):
         if idx == 0:
             return mid
         elif idx == -1:
-            return binary_search_creation_block(provider, contract_address, start, mid - 1)
+            return binary_search_creation_block(
+                provider, contract_address, start, mid - 1
+            )
         elif idx == 1:
-            return binary_search_creation_block(provider, contract_address, mid + 1, end)
+            return binary_search_creation_block(
+                provider, contract_address, mid + 1, end
+            )
     else:
         return -1
 
 
 def get_contract_creation_block(provider, contract_address):
     start_block = 0
-    end_block = provider.eth.get_block('latest')['number']
+    end_block = provider.eth.get_block("latest")["number"]
     contract_address = provider.to_checksum_address(contract_address)
-    return binary_search_creation_block(provider, contract_address, start_block, end_block)
+    return binary_search_creation_block(
+        provider, contract_address, start_block, end_block
+    )

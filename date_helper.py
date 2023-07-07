@@ -11,7 +11,7 @@ def timestamp_to_datestr(_timestamp: int, _format: str = None) -> str:
     if _format:
         return datetime.fromtimestamp(_timestamp).strftime(_format)
     else:
-        return datetime.fromtimestamp(_timestamp).strftime('%Y-%m-%d %H:%M:%S')
+        return datetime.fromtimestamp(_timestamp).strftime("%Y-%m-%d %H:%M:%S")
 
 
 def datestr_to_timestamp(_datestr: str) -> int:
@@ -19,5 +19,9 @@ def datestr_to_timestamp(_datestr: str) -> int:
     :param _datestr: datestr in YYYY-MM-DD format
     :return: UNIX timestamp
     """
-    return int(format((time.mktime(datetime.strptime(_datestr,
-                                                     '%Y-%m-%d %H:%M:%S').timetuple())), '.10g'))
+    return int(
+        format(
+            (time.mktime(datetime.strptime(_datestr, "%Y-%m-%d %H:%M:%S").timetuple())),
+            ".10g",
+        )
+    )
