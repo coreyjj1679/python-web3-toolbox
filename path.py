@@ -1,4 +1,5 @@
 import os
+
 base_path = os.path.dirname(__file__)
 
 
@@ -18,5 +19,5 @@ TOKENS_DIR = get_abs_path('configs/tokens/')
 
 
 # [abis]
-ERC20_ABI = get_abs_path('abis/common/ERC20.json')
-GB_ABI = get_abs_path('abis/common/GovernorBravo.json')
+ERC20_ABI = get_abs_path("abis/common/ERC20.json")
+GB_ABI = get_abs_path("abis/common/GovernorBravo.json")

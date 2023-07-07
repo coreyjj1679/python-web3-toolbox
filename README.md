@@ -1,12 +1,13 @@
 # python all-in-one web3 toolbox
 
 All-in-one python toolbox for web3 and cli lovers. Aim to build a toolbox to do
-everything inside terminal. Getting rugged or scammed without a browser.
+everything inside terminal. Getting rugged or scammed without a browser. Powered by [Typer](https://typer.tiangolo.com/)
 
 ## Environment
 
-- python 3.11
+- python 3.10
 - macOS Monterey 12.5.1
+- [Poetry](https://python-poetry.org/)
 
 ## Setup
 
@@ -14,30 +15,8 @@ everything inside terminal. Getting rugged or scammed without a browser.
 
   ```bash
   $ git clone <THIS_REPO>
-  $ pip install -r requirement.txt
-  ```
-
-- Setup `alias`(Optional)
-
-  ```bash
-  # for zsh users
-  $ chmod u+x setup.zsh
-  $ ./setup.zsh
-  $ source ~./zshrc
-
-  # for bash users
-  $ chmod u+x setup.sh
-  $ ./setup.sh
-  $ source ~./bashrc
-  ```
-
-- Run
-  ```bash
-  # set alias
-  $ web3tools --help
-  or
-  # no
-  $ python3 main.py --help
+  $ poetry install
+  $ python3 setup.py
   ```
 
 ## Commands
