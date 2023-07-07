@@ -2,8 +2,7 @@ import sys
 import os
 import subprocess
 
-print(sys.version_info)
-if sys.version_info < (3, 11):
+if sys.version_info < (3, 10):
     sys.stdout.write("installer requires Python 3.6 or newer to run!\n")
     sys.exit(1)
 
