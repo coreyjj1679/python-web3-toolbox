@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "python-web3-toolbox"
+version = "0.1.0"
+description = ""
+authors = ["ruggedev <ruggedev@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "2.31.0"
+rich = "13.4.2"
+typer = "0.9.0"
+typing-extensions = "4.7.1"
+web3 = "6.2.0"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
