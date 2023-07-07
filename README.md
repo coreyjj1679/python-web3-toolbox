@@ -14,30 +14,8 @@ everything inside terminal. Getting rugged or scammed without a browser.
 
   ```bash
   $ git clone <THIS_REPO>
-  $ pip install -r requirement.txt
-  ```
-
-- Setup `alias`(Optional)
-
-  ```bash
-  # for zsh users
-  $ chmod u+x setup.zsh
-  $ ./setup.zsh
-  $ source ~./zshrc
-
-  # for bash users
-  $ chmod u+x setup.sh
-  $ ./setup.sh
-  $ source ~./bashrc
-  ```
-
-- Run
-  ```bash
-  # set alias
-  $ web3tools --help
-  or
-  # no
-  $ python3 main.py --help
+  $ poetry install
+  $ python3 setup.py
   ```
 
 ## Commands

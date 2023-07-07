@@ -23,6 +23,6 @@ else
 	echo "file created."
 fi
 
-echo "alias $SHORT_CUT='python3 $CURRENT_PATH/main.py'" > $DIR;
+echo "alias $SHORT_CUT='python3 $CURRENT_PATH/main.py'" >> $DIR;
 
 echo "Now you may simply call $SHORT_CUT instead of 'python3 $CURRENT_PATH/main.py' after restarting terminal";
