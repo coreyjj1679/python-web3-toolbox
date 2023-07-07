@@ -13,4 +13,4 @@ app.add_typer(erc20.app, name='token')
 app.add_typer(llama.app, name='llama')
 
 if __name__ == "__main__":
-    app()
+    app() 
