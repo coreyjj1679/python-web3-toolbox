@@ -10,7 +10,10 @@ console = Console()
 
 @app.command(help="list all user configs")
 def ls():
-    def f(v): print(f"""config file: {v.file_path.split("/")[-1]}, "key": {v.key}, "alias": {v.alias}""")
+    def f(v):
+        print(
+            f"""config file: {v.file_path.split("/")[-1]}, "key": {v.key}, "alias": {v.alias}"""
+        )
 
     [(f(u)) for u in config.CONFIG_GROUP]
 
@@ -25,7 +28,7 @@ def pk(alias: str):
     keys = cfg_obj.keys()
 
     print(f"To add new entry for {alias}: ")
-    k = " ".join([f'<{j.upper()}>' for j in keys])
+    k = " ".join([f"<{j.upper()}>" for j in keys])
     print(f"web3tools config {alias} add {k}")
 
 

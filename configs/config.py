@@ -8,9 +8,9 @@ import path
 
 
 class Action(Enum):
-    add = 'add'
-    rm = 'rm'
-    table = 'table'
+    add = "add"
+    rm = "rm"
+    table = "table"
 
 
 class BaseConfig:
@@ -43,31 +43,31 @@ class JsonConfig(BaseConfig):
     def add(self, entry):
         records = self.load_json()
         if any(entry[self.key].lower() in d[self.key].lower() for d in records):
-            print(f'{entry[self.key]} already exists.')
+            print(f"{entry[self.key]} already exists.")
             return
 
         records.append(entry)
-        with open(self.file_path, mode='w') as f:
+        with open(self.file_path, mode="w") as f:
             f.write(json.dumps(records, indent=2))
         print(f'added {entry[self.key]} to {self.file_path.split("/")[-1]}')
 
     def rm(self, k):
         records = self.load_json()
         if not any(k.lower() in d[self.key].lower() for d in records):
-            print(f'{k} not found.')
+            print(f"{k} not found.")
             return
 
-        updated_json = [d for d in records if d['name'].lower() != k.lower()]
-        with open(self.file_path, mode='w') as f:
+        updated_json = [d for d in records if d["name"].lower() != k.lower()]
+        with open(self.file_path, mode="w") as f:
             f.write(json.dumps(updated_json, indent=2))
-        print(f'{k} removed from bookmark.')
+        print(f"{k} removed from bookmark.")
 
     def table(self, add_index=True):
         console = Console()
         records = self.load_json()
         keys = list(self.config_type.__annotations__.keys())
         if add_index:
-            keys.insert(0, 'index')
+            keys.insert(0, "index")
         table = Table(*keys)
         for i, j in enumerate(records):
             row = [str(k) for k in list(j.values())]
@@ -104,10 +104,10 @@ class NetworkDict(TypedDict):
     api: str
 
 
-wallet_config = JsonConfig(path.WALLET_PATH, 'wallet', WalletDict, 'name')
-llama_config = JsonConfig(path.LLAMA_PATH, 'llama', LlamaDict, 'llama_slug')
-bookmark_config = JsonConfig(path.BOOKMARK_PATH, 'bookmark', BookmarkDict, 'name')
-network_config = JsonConfig(path.NETWORK_PATH, 'chain', NetworkDict, 'chain_slug')
+wallet_config = JsonConfig(path.WALLET_PATH, "wallet", WalletDict, "name")
+llama_config = JsonConfig(path.LLAMA_PATH, "llama", LlamaDict, "llama_slug")
+bookmark_config = JsonConfig(path.BOOKMARK_PATH, "bookmark", BookmarkDict, "name")
+network_config = JsonConfig(path.NETWORK_PATH, "chain", NetworkDict, "chain_slug")
 
 CONFIG_GROUP = (wallet_config, llama_config, bookmark_config, network_config)
 
