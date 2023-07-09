@@ -20,4 +20,3 @@ def get_v2_chains():
     # Get current TVL of all chains
     path = "/v2/chains"
     return rq.get(URL + path).json()
-

@@ -1,8 +1,10 @@
 import os
 
+
 def check_file_exists(filename: str, directory: str) -> bool:
     file_path = os.path.join(directory, filename)
     return os.path.isfile(file_path)
+
 
 def get_unique_filename(filename: str, directory: str) -> str:
     base_filename, extension = os.path.splitext(filename)
