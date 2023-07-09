@@ -118,7 +118,6 @@ def add(name: str, llama_slug: str):
 
     # check if llama_slug exists
     response = dl.get_protocol(llama_slug)
-    
     if response.get('statusCode') == 400:
         print(f"{llama_slug} not found")
     else:
