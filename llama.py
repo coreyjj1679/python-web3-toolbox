@@ -43,8 +43,6 @@ def get_update():
 
 @app.command(help="update protocols data")
 def update(args: str = typer.Argument(None)):
-    
-
     if os.path.exists(PROTOCOLS_LISTS):
         with open(PROTOCOLS_LISTS, mode="r") as f:
             existing_data = json.load(f)
@@ -53,9 +51,7 @@ def update(args: str = typer.Argument(None)):
         with open(PROTOCOLS_LISTS, mode="w") as f:
             initial_data = {"time": time.time(), "data": {}}
             json.dump(initial_data, f)
-        print(f'Created new data file at {PROTOCOLS_LISTS}')
-        
-  
+        print(f"Created new data file at {PROTOCOLS_LISTS}")
 
     if typer.confirm("Do you want to update list?"):
         get_update()
