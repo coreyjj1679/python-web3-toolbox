@@ -29,6 +29,7 @@ def get_update():
 
     print("Done")
 
+
 def check_llama_protocol_exists():
     if os.path.exists(p.LLAMA_PROTOCOLS_PATH):
         with open(p.LLAMA_PROTOCOLS_PATH, mode="r") as f:
@@ -39,6 +40,7 @@ def check_llama_protocol_exists():
             initial_data = {"time": time.time(), "data": {}}
             json.dump(initial_data, f)
         print(f"Created new data file at {p.LLAMA_PROTOCOLS_PATH}")
+
 
 @app.command(help="update protocols data")
 def update(args: str = typer.Argument(None)):
@@ -70,7 +72,7 @@ def lists(query: str = typer.Option(None, help="Optional search query")):
     matches = []
     user_selection = str(input("Select an option: [Search, Bookmarked]\n") or "Search")
     print(f"Selected {user_selection}\n")
-    
+
     if user_selection.lower() == "bookmarked":
         with open(p.LLAMA_PROTOCOLS_BOOKMARK_PATH, "r") as f:
             data = json.load(f)
@@ -148,9 +150,7 @@ def rm(slug: str):
         return
 
     updated_json = [
-        d
-        for d in bookmark_llama_protocol
-        if d["slug"].lower() != slug.lower()
+        d for d in bookmark_llama_protocol if d["slug"].lower() != slug.lower()
     ]
     with open(p.LLAMA_PROTOCOLS_BOOKMARK_PATH, mode="w") as f:
         f.write(json.dumps(updated_json, indent=2))
