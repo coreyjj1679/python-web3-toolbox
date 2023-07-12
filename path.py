@@ -17,6 +17,8 @@ LLAMA_PATH = get_abs_path("configs/bookmark_llama_protocol.json")
 # [Tokens directories groupped by chain_name]
 TOKENS_DIR = get_abs_path("configs/tokens/")
 
+LLAMA_PROTOCOLS_PATH = get_abs_path("configs/llama_protocol_lists.json")
+LLAMA_PROTOCOLS_BOOKMARK_PATH = get_abs_path("configs/llama_protocol_bookmark.json")
 
 # [abis]
 ERC20_ABI = get_abs_path("abis/common/ERC20.json")
