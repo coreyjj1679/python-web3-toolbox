@@ -1,7 +1,7 @@
 from typing import Annotated, Optional, List
 from rich.console import Console
 from rich import print
-import configs.config as config
+import src.configs.config as config
 import typer
 
 app = typer.Typer()

@@ -2,4 +2,5 @@ venv/
 requests.log
 .idea
 __pycache__/
-configs/llama_protocol_lists.json
+src/configs/llama_protocol_lists.json
+dist/

@@ -24,7 +24,7 @@ class Web3Instance:
 
     def get_latest_block_custom(self, custom_chain):
         base_path = os.path.dirname(__file__)
-        network_path = os.path.join(base_path, "configs/networks.json")
+        network_path = os.path.join(base_path, "../configs/networks.json")
         networks = json.loads(open(network_path, "r").read())
         custom_network = next(
             item for item in networks if item["chain_slug"] == custom_chain

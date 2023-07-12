@@ -1,7 +1,7 @@
 import configparser
 import json
 from typing import TypedDict, List
-from web3_instance import Web3Instance, Web3
+from src.core.web3_instance import Web3Instance, Web3
 import os
 
 
@@ -39,10 +39,10 @@ class UserConfig:
     def __init__(self):
         # Update abs path to ensure we could run the script in anywhere
         base_path = os.path.dirname(__file__)
-        config_path = os.path.join(base_path, "configs/config.ini")
-        network_path = os.path.join(base_path, "configs/networks.json")
-        wallet_path = os.path.join(base_path, "configs/wallet.json")
-        bookmark_path = os.path.join(base_path, "configs/bookmarks.json")
+        config_path = os.path.join(base_path, "../configs/config.ini")
+        network_path = os.path.join(base_path, "../configs/networks.json")
+        wallet_path = os.path.join(base_path, "../configs/wallet.json")
+        bookmark_path = os.path.join(base_path, "../configs/bookmarks.json")
 
         cfg = configparser.ConfigParser()
         cfg.read(config_path)

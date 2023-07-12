@@ -11,8 +11,9 @@ setopt ALIASES;
 # Custom zsh script for our tools
 
 # replace this for oh-my-zsh user
-# DIR=~/.oh-my-zsh/custom/web3-aio.zsh
-DIR=~/.zshrc
+#DIR=~/.oh-my-zsh/custom/web3-aio.zsh
+ DIR=~/.zshrc
+
 if [ -d "$DIR" ];
 then
     echo "$DIR directory exists."
@@ -23,6 +24,6 @@ else
 	echo "file created."
 fi
 
-echo "alias $SHORT_CUT='python3 $CURRENT_PATH/main.py'" >> $DIR;
+echo "alias $SHORT_CUT='PYTHONPATH=$CURRENT_PATH python3 $CURRENT_PATH/src/cli/main.py'" >> $DIR;
 
-echo "Now you may simply call $SHORT_CUT instead of 'python3 $CURRENT_PATH/main.py' after restarting terminal";
+echo "Now you may simply call $SHORT_CUT instead of 'python3 $CURRENT_PATH/src/cli/main.py' after restarting terminal";

@@ -8,6 +8,6 @@ SHORT_CUT='web3tools';
 # Enable alias work outside zsh env
 SHOPT -s expand-aliases;
 
-alias $SHORT_CUT='python3 $CURRENT_PATH/main.py'
+alias $SHORT_CUT='PYTHONPATH=$CURRENT_PATH python3 $CURRENT_PATH/src/cli/main.py'
 
-echo "Now you may simply call $SHORT_CUT instead of 'python3 $CURRENT_PATH/main.py'";
+echo "Now you may simply call $SHORT_CUT instead of 'python3 $CURRENT_PATH/src/cli/main.py'";

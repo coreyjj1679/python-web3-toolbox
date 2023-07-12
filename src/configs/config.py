@@ -4,7 +4,7 @@ from rich.table import Table
 from enum import Enum
 import os
 import json
-import path
+from src.constants import path
 
 
 class Action(Enum):

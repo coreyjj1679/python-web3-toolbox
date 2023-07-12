@@ -55,7 +55,7 @@ everything inside terminal. Getting rugged or scammed without a browser. Powered
 | `web3tools w3 block [-c chain]`                                      | Get current block height of the default / specifc chain. |                                                                          |
 | `web3tools w3 creation <ADDRESS>`                                    | Get creation block of a contract                         | may takes 10s for the binary search                                      |
 | `web3tools w3 balance [-b block] [-a address]`                       | get native balance.                                      | default: wallets inside wallet.json, latest block                        |
-| `web3tools w3 abi [-a address] [-c chain] [-o output] [-f filename]` | get contract abi from any blockchain explorer            | update [`configs/networks.json`](configs/networks.json) for other chains |
+| `web3tools w3 abi [-a address] [-c chain] [-o output] [-f filename]` | get contract abi from any blockchain explorer            | update [`configs/networks.json`](src/configs/networks.json) for other chains |
 
 ### token
 

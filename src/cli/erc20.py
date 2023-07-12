@@ -1,9 +1,9 @@
 import typer
-import path
 import os
 import json
-from user_config import config
-from erc_instance import ERC20
+import src.constants.path as path
+from src.cli.user_config import config
+from src.core.erc_instance import ERC20
 from typing_extensions import Annotated
 
 app = typer.Typer()

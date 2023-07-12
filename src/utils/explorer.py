@@ -1,4 +1,4 @@
-import utils.rq as rq
+import src.utils.rq as rq
 
 
 def get_contract_abi(contract_address: str, api: str):
