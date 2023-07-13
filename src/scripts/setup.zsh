@@ -9,10 +9,11 @@ SHORT_CUT='web3tools';
 setopt ALIASES;
 
 # Custom zsh script for our tools
-
-# replace this for oh-my-zsh user
-#DIR=~/.oh-my-zsh/custom/web3-aio.zsh
- DIR=~/.zshrc
+if [ -d ~/.oh-my-zsh ]; then
+	DIR=~/.oh-my-zsh/custom/web3-aio.zsh
+ else
+	DIR=~/.zshrc
+fi
 
 if [ -d "$DIR" ];
 then
@@ -23,6 +24,9 @@ else
 	touch $DIR
 	echo "file created."
 fi
+
+echo "Removing old alias..."
+sed -i ".bak" '/alias web3tools/d' $DIR
 
 echo "alias $SHORT_CUT='PYTHONPATH=$CURRENT_PATH python3 $CURRENT_PATH/src/cli/main.py'" >> $DIR;
 
