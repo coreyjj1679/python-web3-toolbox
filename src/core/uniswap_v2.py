@@ -4,12 +4,13 @@ from src.utils import contract as ch
 from src.cli.user_config import config
 from typing import List
 
+
 class UniswapV2:
     router: contract.Contract
     factory: contract.Contract
     name: str
 
-    def __init__(self, router_address, name='UniswapV2-like'):
+    def __init__(self, router_address, name="UniswapV2-like"):
         self.name = name
         self.router = ch.get_contract_instance(
             config.web3_instance.provider,
@@ -27,8 +28,7 @@ class UniswapV2:
     # [READ]
     def get_pair(self, token_0: str, token_1: str):
         return self.factory.functions.getPair(
-            Web3.to_checksum_address(token_0),
-            Web3.to_checksum_address(token_1)
+            Web3.to_checksum_address(token_0), Web3.to_checksum_address(token_1)
         ).call()
 
     def quote(self, token_path: List[str]):

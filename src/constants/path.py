@@ -23,6 +23,6 @@ LLAMA_PROTOCOLS_BOOKMARK_PATH = get_abs_path("../configs/llama_protocol_bookmark
 # [abis]
 ERC20_ABI = get_abs_path("../abis/common/ERC20.json")
 GB_ABI = get_abs_path("../abis/common/GovernorBravo.json")
-FACTORY_V2_ABI = get_abs_path('../abis/common/UniswapV2Factory.json')
-PAIR_V2_ABI = get_abs_path('../abis/common/UniswapV2Pair.json')
-ROUTER_V2_ABI = get_abs_path('../abis/common/UniswapV2Router.json')
+FACTORY_V2_ABI = get_abs_path("../abis/common/UniswapV2Factory.json")
+PAIR_V2_ABI = get_abs_path("../abis/common/UniswapV2Pair.json")
+ROUTER_V2_ABI = get_abs_path("../abis/common/UniswapV2Router.json")
