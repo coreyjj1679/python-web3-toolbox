@@ -1,7 +1,7 @@
-import utils.contract as ch
-import path
+from src.utils import contract as ch
+from src.constants import path
 from web3 import contract, Web3
-from user_config import config
+from src.cli.user_config import config
 
 
 class ERC20:

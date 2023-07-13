@@ -1,5 +1,5 @@
 import typer
-import date_helper as dh
+from src.utils import date_helper
 from rich.console import Console
 from web3 import Web3
 
@@ -27,9 +27,9 @@ def cs(x: str):
 
 @app.command(help="convert timestamp to date string in local timezone")
 def ts_to_date(timestamp: int):
-    print(dh.timestamp_to_datestr(timestamp))
+    print(date_helper.timestamp_to_datestr(timestamp))
 
 
 @app.command(help="convert date string to timestamp in local timezone")
 def date_to_ts(date_str: str):
-    print(dh.datestr_to_timestamp(date_str))
+    print(date_helper.datestr_to_timestamp(date_str))

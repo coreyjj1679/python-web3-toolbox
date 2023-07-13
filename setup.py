@@ -16,8 +16,8 @@ if not MACOS:
 
 # @TODO: Handle other shell
 if "zsh" in SHELL:
-    subprocess.call(["zsh", "./scripts/setup.zsh"])
+    subprocess.call(["zsh", "./src/scripts/setup.zsh"])
 elif "bash" in SHELL:
-    subprocess.call(["sh", "./scripts/setup.sh"])
+    subprocess.call(["sh", "./src/scripts/setup.sh"])
 else:
     print(f"{SHELL} is not supported yet.")

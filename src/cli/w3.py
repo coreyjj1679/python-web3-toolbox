@@ -7,8 +7,8 @@ from rich.console import Console
 from rich.table import Table
 from user_config import config
 from web3 import Web3
-import utils.explorer as eh
-import utils.contract as ch
+import src.utils.explorer as eh
+import src.utils.contract as ch
 import json
 
 app = typer.Typer()

@@ -1,9 +1,8 @@
 import os.path
-from typing import Annotated
 import typer
-import utils.defillama as dl
-import path as p
-import date_helper as dh
+import src.utils.defillama as dl
+import src.utils.date_helper as dh
+import src.constants.path as path
 import json
 import time
 import sys
@@ -24,19 +23,19 @@ def get_update():
     data = {"time": timestamp, "data": response}
 
     # Write the dictionary into the file
-    with open(p.LLAMA_PROTOCOLS_PATH, mode="w") as f:
+    with open(path.LLAMA_PROTOCOLS_PATH, mode="w") as f:
         json.dump(data, f)
 
     print("Done")
 
 
 def check_llama_protocol_exists():
-    if os.path.exists(p.LLAMA_PROTOCOLS_PATH):
-        with open(p.LLAMA_PROTOCOLS_PATH, mode="r") as f:
+    if os.path.exists(path.LLAMA_PROTOCOLS_PATH):
+        with open(path.LLAMA_PROTOCOLS_PATH, mode="r") as f:
             existing_data = json.load(f)
         print(f'Your data import from {time.ctime(existing_data["time"])}')
     else:
-        with open(p.LLAMA_PROTOCOLS_PATH, mode="w") as f:
+        with open(path.LLAMA_PROTOCOLS_PATH, mode="w") as f:
             initial_data = {"time": time.time(), "data": {}}
             json.dump(initial_data, f)
         print(f"Created new data file at {p.LLAMA_PROTOCOLS_PATH}")
@@ -52,7 +51,7 @@ def update(args: str = typer.Argument(None)):
 
 
 def search(query=None):
-    with open(p.LLAMA_PROTOCOLS_PATH, "r") as f:
+    with open(path.LLAMA_PROTOCOLS_PATH, "r") as f:
         data = json.load(f)
     slugs = [protocol["slug"] for protocol in data["data"]]
     if query:
@@ -142,7 +141,7 @@ def add(name: str, slug: str):
 
 @app.command(help="remove bookmark protocol")
 def rm(slug: str):
-    with open(p.LLAMA_PROTOCOLS_BOOKMARK_PATH) as f:
+    with open(path.LLAMA_PROTOCOLS_BOOKMARK_PATH) as f:
         bookmark_llama_protocol = json.load(f)
 
     if not any(slug.lower() in d["slug"] for d in bookmark_llama_protocol):
