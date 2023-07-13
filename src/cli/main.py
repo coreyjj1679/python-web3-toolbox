@@ -16,7 +16,9 @@ app.add_typer(erc20.app, name="token")
 app.add_typer(llama.app, name="llama")
 
 
-@app.command(help="Go straight into bookmarked website, avoiding scam results from google.")
+@app.command(
+    help="Go straight into bookmarked website, avoiding scam results from google."
+)
 def goto(name: str):
     togo = next(
         item for item in config.bookmark_list if item["name"].lower() == name.lower()
