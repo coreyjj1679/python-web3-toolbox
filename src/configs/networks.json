@@ -1,0 +1,16 @@
+[
+  {
+    "api": "https://api.snowtrace.io/",
+    "chain_id": 43114,
+    "chain_slug": "avax",
+    "native_currency": "AVAX",
+    "rpc": "https://rpc.ankr.com/avalanche"
+  },
+  {
+    "api": "https://api.bscscan.com/",
+    "chain_id": 56,
+    "chain_slug": "bnb",
+    "native_currency": "BNB",
+    "rpc": "https://rpc.ankr.com/bsc"
+  }
+]

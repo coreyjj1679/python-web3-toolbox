@@ -1,12 +1,12 @@
 # python all-in-one web3 toolbox
 
-All-in-one python toolbox for web3 and cli lovers. Aim to build a toolbox to do
-everything inside terminal. Getting rugged or scammed without a browser.
+All-in-one web3 library for web3 and cli lovers. Powered by [Typer](https://typer.tiangolo.com/).
 
 ## Environment
 
-- python 3.11
+- python 3.10
 - macOS Monterey 12.5.1
+- [Poetry](https://python-poetry.org/)
 
 ## Setup
 
@@ -14,31 +14,11 @@ everything inside terminal. Getting rugged or scammed without a browser.
 
   ```bash
   $ git clone <THIS_REPO>
-  $ pip install -r requirement.txt
+  $ poetry install
+  $ python3 setup.py
   ```
 
-- Setup `alias`(Optional)
-
-  ```bash
-  # for zsh users
-  $ chmod u+x setup.zsh
-  $ ./setup.zsh
-  $ source ~./zshrc
-
-  # for bash users
-  $ chmod u+x setup.sh
-  $ ./setup.sh
-  $ source ~./bashrc
-  ```
-
-- Run
-  ```bash
-  # set alias
-  $ web3tools --help
-  or
-  # no
-  $ python3 main.py --help
-  ```
+# Cli
 
 ## Commands
 
@@ -48,15 +28,11 @@ everything inside terminal. Getting rugged or scammed without a browser.
 
   ```bash
   $ web3tools --help
-  or
-  $ python3 main.py --help
   ```
 
 - get list of sub-commands
   ```bash
-  $ web3tools <GROUP> --help
-  or
-  $ python3 main.py <GROUP> --help
+  $ web3tools <COMMAND_GROUP> --help
   ```
 
 ### Basic
@@ -69,14 +45,24 @@ everything inside terminal. Getting rugged or scammed without a browser.
 | `web3tools basic date-to-ts <DATE_STRING>` | convert date string to timestamp in local timezones | input format: YYYY-MM-DD HH:MM:SS  |
 | `web3tools basic ts-to-date <TIMESTAMP>`   | convert timestamp to date string in local timezone  | output format: YYYY-MM-DD HH:MM:SS |
 
+### config
+
+| command                          | description           | remark |
+| :------------------------------- | :-------------------- | :----- |
+| `web3tools config ls`            | list all user configs |        |
+| `web3tools config pk <ALIAS>`    | print keys of configs |        |
+| `web3tools config add [ARGS]`    |                       |        |
+| `web3tools config rm <KEY>`      |                       |        |
+| `web3tools config table <ALIAS>` |                       |        |
+
 ### w3
 
-| command                                                              | description                                              | remark                                                                   |
-| :------------------------------------------------------------------- | :------------------------------------------------------- | :----------------------------------------------------------------------- |
-| `web3tools w3 block [-c chain]`                                      | Get current block height of the default / specifc chain. |                                                                          |
-| `web3tools w3 creation <ADDRESS>`                                    | Get creation block of a contract                         | may takes 10s for the binary search                                      |
-| `web3tools w3 balance [-b block] [-a address]`                       | get native balance.                                      | default: wallets inside wallet.json, latest block                        |
-| `web3tools w3 abi [-a address] [-c chain] [-o output] [-f filename]` | get contract abi from any blockchain explorer            | update [`configs/networks.json`](configs/networks.json) for other chains |
+| command                                                              | description                                              | remark                                                                       |
+| :------------------------------------------------------------------- | :------------------------------------------------------- | :--------------------------------------------------------------------------- |
+| `web3tools w3 block [-c chain]`                                      | Get current block height of the default / specifc chain. |                                                                              |
+| `web3tools w3 creation <ADDRESS>`                                    | Get creation block of a contract                         | may takes 10s for the binary search                                          |
+| `web3tools w3 balance [-b block] [-a address]`                       | get native balance.                                      | default: wallets inside wallet.json, latest block                            |
+| `web3tools w3 abi [-a address] [-c chain] [-o output] [-f filename]` | get contract abi from any blockchain explorer            | update [`configs/networks.json`](src/configs/networks.json) for other chains |
 
 ### token
 
@@ -133,3 +119,11 @@ everything inside terminal. Getting rugged or scammed without a browser.
 
 - Check [Dashboard](https://github.com/users/ruggedev/projects/2)
 - PR
+
+# Library
+
+- TBD
+
+# Disclaimer
+
+- Use this at your own risk.
